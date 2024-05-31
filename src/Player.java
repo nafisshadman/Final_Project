@@ -8,19 +8,27 @@ public class Player {
     private final double MOVE_AMT = 0.2;
     private BufferedImage right;
     private BufferedImage left;
+    private BufferedImage down;
+    private BufferedImage norm;
+    private boolean facingUp;
     private boolean facingRight;
+
+    private boolean facingleft;
+    private boolean facingdown;
     private double xCoord;
     private double yCoord;
     private int score;
 
-    public Player(String leftImg, String rightImg) {
+    public Player(String Img, String rightImg, String leftImg, String downImg) {
         facingRight = true;
         xCoord = 50; // starting position is (50, 435), right on top of ground
         yCoord = 435;
         score = 0;
         try {
-            left = ImageIO.read(new File(leftImg));
+            norm = ImageIO.read(new File(Img));
             right = ImageIO.read(new File(rightImg));
+            left = ImageIO.read(new File(leftImg));
+            down = ImageIO.read(new File(downImg));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -37,13 +45,16 @@ public class Player {
     public int getScore() {
         return score;
     }
-
-    public void faceRight() {
-        facingRight = true;
+    public void faceUp() {
+        facingUp = true;
     }
 
+    public void faceRight() {facingRight = true;}
     public void faceLeft() {
-        facingRight = false;
+        facingRight = true;
+    }
+    public void facedown() {
+        facingdown = true;
     }
 
     public void moveRight() {
@@ -75,10 +86,28 @@ public class Player {
     }
 
     public BufferedImage getPlayerImage() {
-        if (facingRight) {
+        if (facingUp) {
+            facingleft = false;
+            facingRight = false;
+            facingdown = false;
+            return norm;
+        } else if (facingRight){
+            facingleft = false;
+            facingUp = false;
+            facingdown = false;
             return right;
-        } else {
+        }
+        else if(facingleft){
+            facingUp = false;
+            facingRight = false;
+            facingdown = false;
             return left;
+        }
+        else{
+            facingleft = false;
+            facingRight = false;
+            facingUp = false;
+            return down;
         }
     }
 
