@@ -19,7 +19,7 @@ public class GraphicsPanel extends JPanel implements KeyListener, MouseListener 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        player = new Player("src/whitecar.png", "src/whitecar.png");
+        player = new Player("src/whitecar.png", "src/whitecarR.png", "src/whitecarL.png", "src/whitecarD.png");
         coins = new ArrayList<>();
         pressedKeys = new boolean[128]; // 128 keys on keyboard, max keycode is 127
         addKeyListener(this);
@@ -65,11 +65,13 @@ public class GraphicsPanel extends JPanel implements KeyListener, MouseListener 
 
         // player moves up (W)
         if (pressedKeys[87]) {
+            player.faceUp();
             player.moveUp();
         }
 
         // player moves down (S)
         if (pressedKeys[83]) {
+            player.facedown();
             player.moveDown();
         }
     }
