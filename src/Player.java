@@ -19,8 +19,10 @@ public class Player {
     private double yCoord;
     private int score;
 
+
+
     public Player(String Img, String rightImg, String leftImg, String downImg) {
-        facingRight = true;
+        facingUp = true;
         xCoord = 50; // starting position is (50, 435), right on top of ground
         yCoord = 435;
         score = 0;
@@ -57,6 +59,29 @@ public class Player {
         facingdown = true;
     }
 
+    // Diagonal movement variables
+    private double speed = 0.2; // Adjust this for desired speed
+    private double angle;  // Angle of movement (degrees)
+
+    // ... (rest of the class)
+
+    public void moveDiagonally(double angleDegrees) {
+        this.angle = angleDegrees; // Update angle for continuous movement
+    }
+
+    public void moveDiagonally() {
+        double angleRadians = Math.toRadians(angle);
+        double xSpeed = speed * Math.cos(angleRadians);
+        double ySpeed = speed * Math.sin(angleRadians);
+
+        if (xCoord + xSpeed >= 0 && xCoord + xSpeed <= 1280) {
+            xCoord += xSpeed;
+        }
+        if (yCoord + ySpeed >= 0 && yCoord + ySpeed <= 910) {
+            yCoord += ySpeed;
+        }
+    }
+
     public void moveRight() {
         if (xCoord + MOVE_AMT <= 1280) {
             xCoord += MOVE_AMT;
@@ -77,6 +102,34 @@ public class Player {
 
     public void moveDown() {
         if (yCoord + MOVE_AMT <= 910) {
+            yCoord += MOVE_AMT;
+        }
+    }
+
+    public void moveNE(){
+        if(xCoord + MOVE_AMT <= 1280 && yCoord - MOVE_AMT >= 0){
+            xCoord += MOVE_AMT;
+            yCoord -= MOVE_AMT;
+        }
+    }
+
+    public void moveNW(){
+        if(xCoord - MOVE_AMT >= 0 && yCoord - MOVE_AMT >= 0){
+            xCoord -= MOVE_AMT;
+            yCoord -= MOVE_AMT;
+        }
+    }
+
+    public void moveSE(){
+        if(xCoord + MOVE_AMT <= 1280 && yCoord + MOVE_AMT <= 910){
+            xCoord += MOVE_AMT;
+            yCoord += MOVE_AMT;
+        }
+    }
+
+    public void moveSW(){
+        if(xCoord - MOVE_AMT >= 0 && yCoord + MOVE_AMT <= 910){
+            xCoord -= MOVE_AMT;
             yCoord += MOVE_AMT;
         }
     }

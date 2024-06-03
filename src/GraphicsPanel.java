@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class GraphicsPanel extends JPanel implements KeyListener, MouseListener {
     private BufferedImage background;
+    private BufferedImage mainsc;
     private Player player;
     private boolean[] pressedKeys;
     private ArrayList<Coin> coins;
@@ -57,7 +58,7 @@ public class GraphicsPanel extends JPanel implements KeyListener, MouseListener 
             player.moveLeft();
         }
 
-        // player moves right (D)
+         //player moves right (D)
         if (pressedKeys[68]) {
             player.faceRight();
             player.moveRight();
@@ -73,6 +74,22 @@ public class GraphicsPanel extends JPanel implements KeyListener, MouseListener 
         if (pressedKeys[83]) {
             player.facedown();
             player.moveDown();
+        }
+
+        if(pressedKeys[69]){
+            player.moveNE();
+        }
+
+        if(pressedKeys[81]){
+            player.moveNW();
+        }
+
+        if(pressedKeys[90]){
+            player.moveSW();
+        }
+
+        if(pressedKeys[88]){
+            player.moveSE();
         }
     }
 
