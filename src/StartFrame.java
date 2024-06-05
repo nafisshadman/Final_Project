@@ -1,17 +1,17 @@
 import javax.swing.*;
 
-public class MainFrame implements Runnable {
+public class StartFrame implements Runnable {
 
-    private GraphicsPanel panel;
+    private StartPanel panel;
 
-    public MainFrame() {
-        JFrame frame = new JFrame("Cars");
+    public StartFrame() {
+        JFrame frame = new JFrame("");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(960, 580); // 540 height of image + 40 for window menu bar
+        frame.setSize(1200, 660); // 540 height of image + 40 for window menu bar
         frame.setLocationRelativeTo(null); // auto-centers frame in screen
 
         // create and add panel
-        panel = new GraphicsPanel();
+        panel = new StartPanel();
         frame.add(panel);
 
         // display the frame

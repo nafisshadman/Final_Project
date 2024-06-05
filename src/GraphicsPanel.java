@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class GraphicsPanel extends JPanel implements KeyListener, MouseListener {
     private BufferedImage background;
-    private BufferedImage mainsc;
     private Player player;
     private boolean[] pressedKeys;
     private ArrayList<Coin> coins;
