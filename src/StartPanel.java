@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class StartPanel extends JPanel implements KeyListener, MouseListener {
     private BufferedImage mainsc;
     private boolean[] pressedKeys;
-    private Enter enter;
+    private Rectangle Start;
 
 
 
@@ -19,7 +19,6 @@ public class StartPanel extends JPanel implements KeyListener, MouseListener {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        enter = new Enter(src/#####);
         addKeyListener(this);
         addMouseListener(this);
         setFocusable(true); // this line of code + one below makes this panel active for keylistener events
@@ -30,6 +29,14 @@ public class StartPanel extends JPanel implements KeyListener, MouseListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);  // just do this
         g.drawImage(mainsc, 0, 0, null);
+        Color m = new Color(0, 0, 0);
+        g.setColor(m);
+        g.fillRect(890, 555, 155, 45);
+        g.setColor(Color.red);
+        g.setFont(new Font("Concert One", Font.BOLD, 36));
+        g.drawString("START", 900, 591);
+        Start = new Rectangle(890, 560, 155, 45);
+        g.setColor(Color.orange);
     }
 
     @Override
@@ -57,6 +64,9 @@ public class StartPanel extends JPanel implements KeyListener, MouseListener {
         if (e.getButton() == MouseEvent.BUTTON1) {  // left mouse click
             Point mouseClickLocation = e.getPoint();
             Coin coin = new Coin(mouseClickLocation.x, mouseClickLocation.y);
+            if (Start.contains(mouseClickLocation)) {
+                MainFrame f = new MainFrame();
+            }
         }
     }
 

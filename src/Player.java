@@ -60,7 +60,7 @@ public class Player {
     }
 
     // Diagonal movement variables
-    private double speed = 0.2; // Adjust this for desired speed
+    private double speed = .2; // Adjust this for desired speed
     private double angle;  // Angle of movement (degrees)
 
     // ... (rest of the class)
